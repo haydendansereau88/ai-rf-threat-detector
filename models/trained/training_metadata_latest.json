@@ -1,0 +1,18 @@
+{
+  "training_samples": 1536,
+  "validation_samples": 384,
+  "test_samples": 480,
+  "features": [],
+  "n_features": 22,
+  "train_accuracy": 1.0,
+  "val_accuracy": 1.0,
+  "test_accuracy": 1.0,
+  "classes": [
+    "Friendly",
+    "Military",
+    "Threat"
+  ],
+  "timestamp": "20250816_112023",
+  "rf_model_path": "models/trained/rf_classifier_20250816_112023.pkl",
+  "isolation_forest_path": "models/trained/isolation_forest_20250816_112023.pkl"
+}
