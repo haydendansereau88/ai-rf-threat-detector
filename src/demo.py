@@ -18,7 +18,7 @@ def run_demo():
     print("\n1. Loading trained models...")
     classifier = ThreatClassifier()
     try:
-        classifier.load_model('models/trained/rf_classifier_latest.pkl')
+        classifier.load_model('../models/trained/rf_classifier_latest.pkl')
         print("   ✓ Models loaded")
     except:
         print("   ✗ Models not found - train first with train_models.py")
