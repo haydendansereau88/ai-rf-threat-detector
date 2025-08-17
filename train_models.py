@@ -409,10 +409,10 @@ if __name__ == "__main__":
     # Run the training pipeline
     rf_classifier, anomaly_detector, saved_paths = main()
     
-    print("\n" + "="*60)
-    print("Next steps:")
-    print("  1. Review the visualizations in docs/images/")
-    print("  2. Check the saved models in models/trained/")
-    print("  3. Proceed to build the real-time processor")
-    print("  4. Then create the GUI")
-    print("="*60)
+    # print("\n" + "="*60)
+    # print("Next steps:")
+    # print("  1. Review the visualizations in docs/images/")
+    # print("  2. Check the saved models in models/trained/")
+    # print("  3. Proceed to build the real-time processor")
+    # print("  4. Then create the GUI")
+    # print("="*60)
