@@ -1,48 +1,62 @@
-# 🛡️ AI-Powered RF Threat Detection System
+# 🛡️ RF Threat Detection System - Prototype
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![Status](https://img.shields.io/badge/Status-Prototype-orange)
 
 ## 🎯 Overview
 
-An intelligent spectrum monitoring system that combines real-time RF (Radio Frequency) analysis with machine learning to automatically detect and classify electromagnetic threats. This project demonstrates the intersection of signal processing, artificial intelligence, and cybersecurity - critical capabilities for modern defense and R&D applications.
+A **proof-of-concept** machine learning system for RF (Radio Frequency) signal classification, demonstrating the feasibility of automated threat detection in the electromagnetic spectrum. This prototype explores the intersection of signal processing, machine learning, and defense applications.
+
+## 📌 Project Scope & Intent
+
+This is a **foundational prototype** developed to:
+- Explore RF signal processing techniques and their application to threat detection
+- Demonstrate machine learning classification of electromagnetic signals
+- Build a real-time processing pipeline with visualization
+- Establish a modular architecture for future development with real RF hardware
+
+**Current Implementation:**
+- Trained and tested on **synthetic RF signal data**
+- Achieves ~90% accuracy on simulated test scenarios
+- Provides real-time visualization and classification (<500ms latency)
+- Serves as a learning platform and foundation for expansion
 
 ## ✨ Key Features
 
 - **Real-time Spectrum Analysis**: Live FFT-based spectrum visualization with waterfall display
-- **AI-Powered Classification**: Machine learning models for automatic threat identification
-- **Anomaly Detection**: Identifies unknown or suspicious signal patterns
-- **Professional Military-Style Interface**: Dark-themed GUI optimized for operational environments
-- **Multi-threaded Processing**: Ensures smooth real-time performance
-- **Comprehensive Logging**: Detailed threat detection history and analysis
+- **Machine Learning Classification**: Random Forest classifier for signal categorization
+- **Anomaly Detection**: Isolation Forest for identifying unusual signal patterns
+- **Professional Military-Style Interface**: Dark-themed GUI inspired by operational systems
+- **Multi-threaded Processing**: Demonstrates real-time processing architecture
+- **Detection Logging**: Tracks classification history and system events
 
-## 🚀 Technical Highlights
+## 🚀 Technical Implementation
 
 ### Signal Processing
 - Fast Fourier Transform (FFT) for frequency domain analysis
-- Spectrogram generation with configurable windowing
-- Real-time signal feature extraction
-- Noise floor estimation and signal detection
+- Spectrogram generation with Hann windowing
+- Feature extraction from time and frequency domains
+- Synthetic signal generation (FM, WiFi, Radar, Jammers)
 
 ### Machine Learning
-- Random Forest classifier for threat classification
-- Support Vector Machine (SVM) for enhanced accuracy
+- Random Forest classifier for multi-class classification
 - Isolation Forest for anomaly detection
-- Feature engineering optimized for RF signals
+- 25+ engineered features per signal
+- Train/validation/test split methodology
 
 ### System Architecture
-- Modular design for easy extension
-- Multi-threaded architecture for real-time processing
-- Queue-based communication between components
-- Efficient buffer management for streaming data
+- Modular design with separate processing components
+- Multi-threaded architecture using Python threading
+- Queue-based communication between acquisition and processing
+- Tkinter-based GUI with matplotlib integration
 
 ## 📋 Requirements
 
 - Python 3.8 or higher
 - Windows/Linux/MacOS
-- 4GB RAM minimum (8GB recommended)
-- Modern CPU (multi-core recommended for real-time processing)
+- 4GB RAM minimum
+- Dependencies listed in requirements.txt
 
 ## 🔧 Installation
 
@@ -68,115 +82,90 @@ pip install -r requirements.txt
 
 ## 🎮 Usage
 
-### Quick Start
+### Quick Demo
 ```bash
-python src/main.py
+# Run the complete system (models must be trained first)
+python main.py
 ```
 
-### Training Custom Models
-```python
-from src.data_generator import TrainingDataGenerator
-from src.threat_classifier import ThreatClassifier
-
-# Generate training data
-generator = TrainingDataGenerator()
-X_train, y_train = generator.create_labeled_dataset(n_samples=5000)
-
-# Train classifier
-classifier = ThreatClassifier()
-classifier.train_classifier(X_train, y_train)
-```
-
-### Command Line Options
+### Training Models
 ```bash
-# Run with custom parameters
-python src/main.py --sensitivity high --freq-range 100MHz-6GHz
-
-# Training mode
-python src/main.py --mode train --data-path ./data/custom_signals.csv
-
-# Replay mode for analysis
-python src/main.py --mode replay --file ./data/capture_20240101.bin
+# Generate synthetic data and train classifiers
+python train_models.py
 ```
 
-## 📊 Signal Classification Categories
+### View Performance Metrics
+```bash
+# Display confusion matrix and accuracy metrics
+python view_training_results.py
+```
 
-| Category | Description | Examples |
-|----------|-------------|----------|
+## 📊 Signal Categories (Simulated)
+
+| Category | Description | Simulated Examples |
+|----------|-------------|-------------------|
 | **Friendly** | Civilian communications | FM Radio, WiFi, Cellular |
-| **Military** | Authorized military signals | Tactical radios, IFF |
-| **Threat** | Hostile or jamming signals | Jammers, Hostile radar |
-| **Unknown** | Unclassified patterns | Anomalous signals |
+| **Military** | Military-style signals | Pulsed radar patterns |
+| **Threat** | Potentially hostile signals | Noise jammers, Frequency sweeps |
 
 ## 🏗️ Project Structure
 
 ```
 ai_rf_threat_detector/
 ├── src/
-│   ├── signal_processor.py      # Core signal processing
-│   ├── threat_classifier.py     # ML classification models
-│   ├── realtime_processor.py    # Real-time processing engine
-│   ├── feature_extractor.py     # Feature engineering
-│   ├── data_generator.py        # Training data generation
-│   ├── gui.py                   # GUI interface
-│   └── main.py                  # Main application entry
-├── data/
-│   ├── raw/                     # Raw signal captures
-│   └── processed/               # Processed training data
+│   ├── signal_processor.py      # Synthetic signal generation & FFT
+│   ├── threat_classifier.py     # ML models (Random Forest, Isolation Forest)
+│   ├── realtime_processor.py    # Threading and real-time simulation
+│   ├── data_generator.py        # Synthetic training data creation
+│   └── gui.py                   # Tkinter GUI implementation
 ├── models/
-│   └── trained/                 # Saved ML models
-├── tests/
-│   ├── test_signal_processor.py
-│   └── test_classifier.py
-├── docs/
-│   └── images/                  # Documentation images
-├── requirements.txt
-└── README.md
+│   └── trained/                 # Saved sklearn models
+├── data/
+│   └── processed/               # Synthetic training datasets
+├── train_models.py              # Model training script
+└── main.py                      # Application entry point
 ```
 
-## 🧪 Testing
+## ⚠️ Current Limitations
 
-Run the test suite:
-```bash
-pytest tests/ -v --cov=src
-```
+- **Synthetic Data Only**: Not tested on real RF signals
+- **Simplified Signal Models**: Basic modulation types without real-world effects
+- **No Hardware Interface**: No SDR or antenna integration
+- **Limited Signal Types**: 6 basic signal categories
+- **Ideal Conditions**: No multipath, interference, or hardware impairments
 
-## 🎯 Performance Metrics
+## 🛠️ Possible Future Development Plans
 
-- **Classification Accuracy**: >85% on test dataset
-- **Processing Latency**: <500ms for threat detection
-- **Real-time Performance**: 30+ FPS GUI update rate
-- **False Positive Rate**: <5% in operational conditions
+### Phase 1: Hardware Integration
+- [ ] RTL-SDR integration for real signal capture
+- [ ] IQ sample processing from SDR hardware
+- [ ] Real-world signal collection and labeling
 
-## 🛠️ Development Roadmap
+### Phase 2: Enhanced Models
+- [ ] Deep learning models (CNN for spectrograms)
+- [ ] Transfer learning from synthetic to real signals
+- [ ] Expanded signal library (50+ modulation types)
 
-- [x] Core signal processing engine
-- [x] Basic ML classification
-- [x] Real-time processing pipeline
-- [x] GUI implementation
-- [ ] GPU acceleration support
-- [ ] Deep learning models integration
-- [ ] Network-based monitoring
-- [ ] Cloud deployment capabilities
+### Phase 3: Production Features
+- [ ] GPU acceleration for real-time processing
+- [ ] Database for signal fingerprinting
+- [ ] Network-distributed sensor capability
+- [ ] Web-based monitoring interface
 
-## 🤝 Contributing
+## 🤔 Technical Decisions & Rationale
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- **Random Forest over Deep Learning**: Chosen for interpretability and lower data requirements
+- **Synthetic Data**: Allows controlled testing and doesn't require expensive RF equipment
+- **Threading over Multiprocessing**: Simpler implementation for prototype, adequate for demo performance
+- **Tkinter GUI**: No external dependencies, sufficient for prototype visualization
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- Signal processing techniques inspired by GNU Radio
-- ML approaches based on recent RF-ML research papers
-- GUI design influenced by military spectrum analyzers
+- Signal processing techniques inspired by GNU Radio and scipy.signal
+- ML approach influenced by academic papers on RF fingerprinting
+- GUI design inspired by military spectrum analyzers
 
-## 📧 Contact
-
-For questions or collaboration opportunities, please open an issue or contact [your.email@example.com]
-
----
-
-**Note**: This project is for educational and research purposes. It simulates RF threat detection capabilities and should not be used for actual security applications without proper validation and certification.
